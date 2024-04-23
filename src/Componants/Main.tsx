@@ -2,6 +2,7 @@ import { Apikey } from "../Constants/Constants";
 import { useState } from "react";
 import WeatherDetails from "./WeatherDetails";
 import { CiSearch } from "react-icons/ci";
+import { VscError } from "react-icons/vsc";
 
 interface WeatherProps {
   city: string;
@@ -76,7 +77,12 @@ const Main = () => {
         {!weather ? (
           <div className=" w-full h-full text-black flex items-center justify-center my-[1rem] font-thin">
             {error ? (
-              <p className="text-red-500">{error}</p>
+              <div className="flex items-center justify-center">
+                <p className="font-bold text-xl mr-3">
+                  <VscError />
+                </p>
+                <p className="text-black">{error}</p>
+              </div>
             ) : (
               <p>Please enter a city</p>
             )}
