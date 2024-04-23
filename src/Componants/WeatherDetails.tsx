@@ -34,22 +34,22 @@ const WeatherDetails = ({
       <div className=" font-light text-center text-3xl">
         <p>{city}</p>
       </div>
-      <div className="flex justify-around bg-black text-white p-2 rounded-xl mt-[4rem]">
-        <div className="flex items-center justify-center">
+      <div className="flex justify-around bg-black bg-opacity-70 text-white p-2 rounded-xl mt-[4rem] flex-wrap font-thin ">
+        <div className="flex  items-center justify-center my-[0.3rem]">
           <div className="text-4xl mr-3">
             <WiThermometer />
           </div>
-          <div>
+          <div className="flex flex-col  items-center justify-center">
             <p>Humidity</p>
             <p>{humidity} %</p>
           </div>
         </div>
         <div className="border-l-[1px] border-white"></div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center my-[0.3rem]">
           <div className="text-4xl mr-3">
             <WiStrongWind />
           </div>
-          <div>
+          <div className="flex flex-col  items-center justify-center">
             <p>Wind Speed</p>
             <p> {speed} km/h</p>
           </div>
