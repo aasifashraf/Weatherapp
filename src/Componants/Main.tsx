@@ -1,6 +1,7 @@
 import { Apikey } from "../Constants/Constants";
 import { useState } from "react";
 import WeatherDetails from "./WeatherDetails";
+import { CiSearch } from "react-icons/ci";
 
 interface WeatherProps {
   city: string;
@@ -68,8 +69,8 @@ const Main = () => {
           <button
             type="button"
             onClick={api}
-            className="text-black border-gray-100 border-[1px] rounded-2xl mt-[1rem] px-[0.8rem] py-[0.25rem] hover:text-white hover:bg-black  absolute right-[1rem] ">
-            Search
+            className=" font-bold text-black text-2xl rounded-full mt-[1.08rem] px-[1rem] py-[0.3rem] hover:text-white hover:bg-black  absolute right-[1rem] ">
+            <CiSearch />
           </button>
         </div>
         {!weather ? (

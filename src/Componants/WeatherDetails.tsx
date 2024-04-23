@@ -1,4 +1,5 @@
-import React from "react";
+import { WiThermometer } from "react-icons/wi";
+import { WiStrongWind } from "react-icons/wi";
 
 const WeatherDetails = ({
   city,
@@ -34,13 +35,24 @@ const WeatherDetails = ({
         <p>{city}</p>
       </div>
       <div className="flex justify-around bg-black text-white p-2 rounded-xl mt-[4rem]">
-        <div>
-          <p>Humidity</p>
-          <p>{humidity} %</p>
+        <div className="flex items-center justify-center">
+          <div className="text-4xl mr-3">
+            <WiThermometer />
+          </div>
+          <div>
+            <p>Humidity</p>
+            <p>{humidity} %</p>
+          </div>
         </div>
-        <div>
-          <p>Wind Speed</p>
-          <p> {speed} km/h</p>
+        <div className="border-l-[1px] border-white"></div>
+        <div className="flex items-center justify-center">
+          <div className="text-4xl mr-3">
+            <WiStrongWind />
+          </div>
+          <div>
+            <p>Wind Speed</p>
+            <p> {speed} km/h</p>
+          </div>
         </div>
       </div>
     </div>
