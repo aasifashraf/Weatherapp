@@ -12,11 +12,14 @@ interface WeatherProps {
 }
 const Main = () => {
   const [city, setCity] = useState<string>("");
-  const [weather, setWeather] = useState<WeatherProps>({} as WeatherProps);
+  const [weather, setWeather] = useState<WeatherProps | null>(null);
+  const [error, setError] = useState<string>("");
+
   // console.log(city);
   // console.log(weather);
 
   const api = async () => {
+    setWeather(null);
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Apikey}`
@@ -37,10 +40,11 @@ const Main = () => {
       };
       setWeather(weatherData);
     } catch (error) {
-      console.error("There was a problem fetching the weather data:", error);
+      setError("Please enter correct city name");
+      console.log("There was a problem fetching the weather data:" + error);
     }
   };
-
+  console.log(error);
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
   };
@@ -51,24 +55,34 @@ const Main = () => {
 
   return (
     <div className="w-full h-[100vh] bg-gradient-to-r from-sky-500 to-indigo-500 text-white flex items-center justify-center">
-      <div className="w-1/3 h-1/1.5 border-2 bg-white  backdrop-opacity-10 rounded-xl">
+      <div className="w-1/3 h-1/1.5  bg-white  backdrop-opacity-10 bg-opacity-45 rounded-xl">
         <div className="flex flex-wrap justify-between my-0 py-0 w-full">
           <input
             type="text"
             placeholder="Enter City Name"
-            value={city}
-            className="border-b-[1px] m-[1rem] text-black p-[0.3rem] outline-none w-full pl-[5rem]"
+            value={city.toUpperCase()}
+            className="border-b-[1px] m-[1rem] pl-4 bg-white bg-opacity-60 text-black p-[0.3rem] outline-none w-full rounded-2xl shadow-2xl"
             onChange={handleOnChange}
             onClick={clearInput}
           />
           <button
             type="button"
             onClick={api}
-            className="text-black border-gray-100 border-[1px] rounded-xl m-[1rem] px-[0.5rem] py-[0.1rem] hover:text-white hover:bg-black hover:transition-shadow absolute ">
+            className="text-black border-gray-100 border-[1px] rounded-2xl mt-[1rem] px-[0.8rem] py-[0.25rem] hover:text-white hover:bg-black  absolute right-[1rem] ">
             Search
           </button>
         </div>
-        <WeatherDetails {...weather} />
+        {!weather ? (
+          <div className=" w-full h-full text-black flex items-center justify-center my-[1rem] font-thin">
+            {error ? (
+              <p className="text-red-500">{error}</p>
+            ) : (
+              <p>Please enter a city</p>
+            )}
+          </div>
+        ) : (
+          <WeatherDetails {...weather} />
+        )}
       </div>
     </div>
   );
